@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Duo</title>
+  <meta name="theme-color" content="#F4F6F3">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- กำลังโหลด -->
+  <main id="loading" class="screen center">
+    <p class="muted">Loading…</p>
+  </main>
+
+  <!-- หน้าล็อกอิน -->
+  <main id="login" class="screen login" hidden>
+    <div class="login-top">
+      <svg width="72" height="48" viewBox="0 0 72 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#0E7C66"/><circle cx="48" cy="24" r="22" fill="#E58A6B" fill-opacity=".85"/></svg>
+      <h1 class="brand">Duo</h1>
+      <p class="lead">Money and weekend plans, shared by the two of you.</p>
+    </div>
+    <div class="login-bottom">
+      <button id="signin" class="btn btn-dark">Continue with your Google account</button>
+      <p class="muted small center-text">Only the two invited accounts can sign in.</p>
+    </div>
+  </main>
+
+  <!-- บัญชีที่ไม่ได้รับอนุญาต -->
+  <main id="denied" class="screen center" hidden>
+    <h1>No access</h1>
+    <p class="muted center-text" id="denied-text"></p>
+    <button id="signout-denied" class="btn btn-light">Sign out</button>
+  </main>
+
+  <!-- แอปหลัก -->
+  <div id="app" hidden>
+    <section id="money" class="tab">
+      <header class="topbar">
+        <h1 id="month-label"></h1>
+        <div class="row gap8">
+          <button class="icon-btn" id="prev-month" aria-label="Previous month">‹</button>
+          <button class="icon-btn" id="next-month" aria-label="Next month">›</button>
+        </div>
+      </header>
+      <div id="money-body"></div>
+    </section>
+
+    <section id="trips" class="tab" hidden>
+      <header class="topbar">
+        <h1>Holiday plans</h1>
+        <button class="icon-btn accent2" id="add-trip" aria-label="Add plan">+</button>
+      </header>
+      <div class="row gap8 filters">
+        <button class="chip" id="f-planned"></button>
+        <button class="chip" id="f-done"></button>
+      </div>
+      <div id="trips-body" class="stack12"></div>
+    </section>
+
+    <button id="fab" class="fab" aria-label="Add expense">+</button>
+
+    <nav class="bottom-nav">
+      <button id="nav-money" class="nav-item active">Money</button>
+      <button id="nav-trips" class="nav-item">Trips</button>
+      <button id="nav-signout" class="nav-item">Sign out</button>
+    </nav>
+  </div>
+
+  <dialog id="sheet" class="sheet"></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
